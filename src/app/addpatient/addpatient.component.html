@@ -1,0 +1,408 @@
+
+<div style="height: 1000px;">
+  <!-- <div style="width: 100%;align-items: center;justify-content:center;display: flex;">
+      <h3 class="display-1" style="width: 40%;text-align: center;">
+        <span style="color:lightgreen; ">HEAL </span>
+        <span style="color:black;">AND </span>
+        <span style="color: rgba(53, 0, 128, 0.536);"> HELP</span>
+      </h3>
+  </div> -->
+
+<nav class="navbar navbar-light" >
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="text-align:center;">
+      <img src="assets/images/logo4.webp" alt="" width="40" height="40" class="d-inline-block align-text-bottom rounded-circle" />
+      <span style="color:lightgreen;font-weight: bold;font-size: 35px;font-family: 'DynaPuff';font-weight: bold;"> HEAL </span>
+      <span style="color:black;font-weight: bold;font-size: 35px;font-family: 'DynaPuff';">& </span>
+      <span style="color: rgba(53, 0, 128, 0.536);font-weight: bold;font-size: 35px;font-family: 'DynaPuff';"> HELP</span>
+    </a>
+    <form class="d-flex">
+      <button class="btn btn-outline-success" (click)="gotodashboard()" type="submit">View Patients</button>
+      <button class="btn btn-outline-success" (click)="signOut()" type="submit" style="margin-left: 5px;">Sign Out</button>
+    </form>
+  </div>
+</nav>
+
+<div style="width: 100%;align-items: center;justify-content:center;display: flex;margin-top: 1%;">
+  <div class="card" style="width:95%;padding: 1.5em .5em .5em;border-radius: 10px;box-shadow: 0 5px 10px rgba(0,0,0,.2);align-items: left;justify-content:left;display: flex;">
+    <div class="card-body">
+      <div class="alert alert-warning alert-dismissible fade show" *ngIf="alertFlag" role="alert">
+        <strong>{{errorMessage}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeAlert()" aria-label="Close"></button>
+      </div>
+      <h4  style="text-align: left;font-family: 'Open Sans';font-weight: bold;">Patient Registration</h4>
+       <br>
+       <br>
+       <div class="row">
+        <div class="col">
+          <h6  style="text-align: left;font-family: 'Open Sans';font-weight: bold;">Personal Details</h6>
+          <span><hr class="rounded"></span>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">First Name</label>
+                <input type="text" class="form-control" placeholder="Enter First Name" [(ngModel)]="firstName">
+                <small *ngIf="isFirstName" style="color:red">
+                  Please enter your first name.
+                </small>
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Middle Name</label>
+                <input type="text" class="form-control" placeholder="Enter Middle Name">
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Last Name</label>
+                <input type="text" class="form-control" placeholder="Enter Last Name">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Email address</label>
+            <input type="email" class="form-control" placeholder="name@example.com" [(ngModel)]="emailAddress">
+            <small *ngIf="isEmailAddress" style="color:red">
+              Please enter your email address.
+            </small>
+            <small *ngIf="isEmailAddressValid" style="color:red">
+              Please enter your valid email address.
+            </small>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Gender</label>
+              <br *ngIf="isGender">
+              <small *ngIf="isGender" style="color:red">
+                Please select gender.
+              </small>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="gender" name="gender" value="male"   checked>
+                <label class="form-check-label">
+                  Male
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="gender" name="gender" value="female" >
+                <label class="form-check-label" >
+                  Female
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="gender" name="gender" value="transgender" >
+                <label class="form-check-label" >
+                  Transgender
+                </label>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Date of Birth</label>
+                <input type="date" class="form-control" id="birthdaytime" name="birthdaytime" placeholder="Date of Birth" [(ngModel)]="date">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Height(inches)</label>
+                <input type="email" class="form-control" placeholder="Enter Height" [(ngModel)]="height">
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Weight</label>
+                <input type="email" class="form-control" placeholder="Enter weight" [(ngModel)]="weight">
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Contact Number</label>
+            <input type="number" class="form-control" maxlength="10" id="mobileNumber" placeholder="Enter Mobile Number"  [(ngModel)]="contactNumber">
+            <small *ngIf="isContactNumber" style="color:red">
+              Please enter valid contact number.
+            </small>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Martial Status</label>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="martialStatus" name="martialStatus" value="Single"  checked>
+                <label class="form-check-label" >
+                  Single
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="martialStatus" name="martialStatus" value="Married" >
+                <label class="form-check-label" >
+                  Married
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="martialStatus" name="martialStatus" value="Divorced" >
+                <label class="form-check-label" >
+                  Divorced
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="martialStatus" name="martialStatus" value="Legally Seperated" >
+                <label class="form-check-label" >
+                  Legally Seperated
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="martialStatus" name="martialStatus" value="Widowed" >
+                <label class="form-check-label" >
+                  Widowed
+                </label>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Taking any medications, currently?</label>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="anyMedications" name="anyMedications" value="YesForMedication"  checked>
+                <label class="form-check-label">
+                  Yes
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="anyMedications" name="anyMedications" value="NoForMedication" >
+                <label class="form-check-label" >
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Do you have any allergies?</label>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="anyAllergies" name="anyAllergies" value="YesForAllergies" checked>
+                <label class="form-check-label" >
+                  Yes
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="anyAllergies" name="anyAllergies" value="NoForAllergies">
+                <label class="form-check-label" >
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col">
+
+            <div class="mb-3" style="margin-top:8%">
+              <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Address</label>
+              <input type="text" class="form-control" placeholder="Enter Street Address" [(ngModel)]="streetAddress" (ngModelChange)="searchPlace()">
+
+              <!-- <input class="form-control" type="text" list="addressList" placeholder="Type to search..." [(ngModel)]="streetAddress" (ngModelChange)="searchPlace()">
+              <datalist id="addressList">
+                <option *ngFor="let address of addressList" value="{{address}}">
+              </datalist>
+
+              <select  class="she-line-select form-control select1" [(ngModel)]="streetAddress" (onchange)="searchPlace()">
+                <option [ngValue]="" [disabled]="true" >Select City</option>
+                <option *ngFor="let address of addressList" [value]="address">
+                  {{address}}
+                </option>
+              </select> -->
+            </div>
+            <!-- <div class="mb-3" style="margin-top:8%">
+              <label class="she-label">Location</label>
+              <input class="she-line-input form-control" type="text" placeholder="Enter Location"
+                      (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off"
+                      autocapitalize="off" spellcheck="off" type="text" #search formControlName="location"
+                      >
+            </div> -->
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Locality</label>
+            <input type="text" class="form-control" placeholder="Enter Locality" [(ngModel)]="locality">
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Cities</label>
+                <select id="pstatus" name="status" class="she-line-select form-control select1" [(ngModel)]="selectedCity">
+                  <option [ngValue]="" [disabled]="true" >Select City</option>
+                  <option *ngFor="let city of citiesList">
+                    {{city}}
+                  </option>
+                </select>
+              </div>
+          </div>
+
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';" >State</label>
+                <select id="pstatus" name="status" class="she-line-select form-control select1" [(ngModel)]="selectedState" (change)="onStateChange()">
+                  <option [ngValue]="" [disabled]="true" >Select State</option>
+                  <option *ngFor="let state of statesList">
+                    {{state}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Country</label>
+                <select id="pstatus" name="status" class="she-line-select form-control select1" [(ngModel)]="selectedCountry" (change)="onCountryChange()">
+                  <option [ngValue]="" [disabled]="true" >Select Country</option>
+                  <option *ngFor="let country of countryList">
+                    {{country}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Postal Code</label>
+              <input type="number" class="form-control" placeholder="Enter Zip Code" [(ngModel)]="zipCode">
+            </div>
+            </div>
+
+          </div>
+          <br>
+          <div class="mb-3">
+              <h6  style="text-align: left;font-family: 'Open Sans';font-weight: bold;">In Case of emergency</h6>
+              <span><hr class="rounded"></span>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">First Name</label>
+                <input type="email" class="form-control" placeholder="Enter First Name" [(ngModel)]="eFirstName">
+
+              </div>
+
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Last Name</label>
+                <input type="email" class="form-control" placeholder="Enter Last Name" [(ngModel)]="eLastName">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Relationship</label>
+            <input type="text" class="form-control" placeholder="Enter Relationship" [(ngModel)]="eRelationship">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';">Contact Number</label>
+            <input type="tel" class="form-control"  class="form-control" placeholder="Enter Mobile Number" [(ngModel)]="eContactNumber">
+          </div>
+          <div class="row" >
+            <div class="col">
+              <a  class="btn btn-primary" (click)="submitForm()" *ngIf="!isLoader" style="width: 100%;font-family: 'Open Sans';">Submit</a>
+              <button class="btn btn-primary" style="width: 100%;" *ngIf="isLoader" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+            <div class="col">
+              <a  class="btn btn-danger" (click)="gotodashboard()" style="width: 100%;font-family: 'Open Sans';">Cancel</a>
+            </div>
+            <!-- <div class="col">[routerLink]="['/patient-registration']"
+             <button class="btn btn-primary" style="width: 100%;" type="button" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Loading...
+            </button>
+          </div> -->
+        </div>
+        <br>
+        <!-- <div class="row" >
+          <div class="col">
+            <div class="alert alert-danger">
+              <strong>Success!</strong> Indicates a successful or positive action.
+            </div>
+          </div>
+         </div> -->
+        </div>
+      </div>
+
+      <br>
+      <br>
+      <br>
+      <!-- <div class="row text-center">
+        <div class="col-md-4">
+          <span><hr class="rounded"></span>
+        </div>
+        <div class="col-md-4">
+            <span>Or Sign In With</span>
+        </div>
+        <div class="col-md-4">
+          <span><hr class="rounded"></span>
+        </div>
+      </div>
+      <br>
+      <div class="row" >
+        <div class="col">
+          <a href="#" class="btn btn-light" style="width: 100%;">Google</a>
+        </div>
+        <div class="col">
+          <a href="#" class="btn btn-light" style="width: 100%;">Facebook</a>
+        </div>
+      </div>
+      <br> -->
+    </div>
+
+  </div>
+
+</div>
+
+<br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- <footer class="bg-light text-center text-lg-start">
+
+          <div class="text-center p-3" style="background-color: tranparent;">
+            © 2020 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          </div>
+
+        </footer> -->
+
+</div>
+
+

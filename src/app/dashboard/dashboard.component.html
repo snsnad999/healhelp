@@ -1,0 +1,186 @@
+
+<div style="height: 1000px;">
+  <!-- <div style="width: 100%;align-items: center;justify-content:center;display: flex;">
+      <h3 class="display-1" style="width: 40%;text-align: center;">
+        <span style="color:lightgreen; ">HEAL </span>
+        <span style="color:black;">AND </span>
+        <span style="color: rgba(53, 0, 128, 0.536);"> HELP</span>
+      </h3>
+  </div> -->
+<nav class="navbar navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="text-align:center;">
+      <img src="assets/images/logo4.webp" alt="" width="40" height="40" class="d-inline-block align-text-bottom rounded-circle" />
+      <span style="color:lightgreen;font-weight: bold;font-size: 35px;font-family: 'DynaPuff';font-weight: bold;"> HEAL </span>
+      <span style="color:black;font-weight: bold;font-size: 35px;font-family: 'DynaPuff';">& </span>
+      <span style="color: rgba(53, 0, 128, 0.536);font-weight: bold;font-size: 35px;font-family: 'DynaPuff';"> HELP</span>
+    </a>
+    <form class="d-flex">
+      <button class="btn btn-outline-success" type="submit" (click)="signOut()" style="margin-left: 5px;">Sign Out</button>
+    </form>
+  </div>
+</nav>
+<div  style="width: 100%;align-items: center;justify-content:center;display: flex;margin-top: 1%;">
+  <div class="card" style="width:90%;padding: 1.5em .5em .5em;border-radius: 10px;box-shadow: 0 5px 10px rgba(0,0,0,.2);align-items: left;justify-content:left;display: flex;">
+    <div class="card-body">
+      <div class="row">
+          <div class="col">
+            <h3  style="text-align: left;font-family: 'Open Sans';font-weight: bold;width: 100%;">Overview</h3>
+          </div>
+          <div class="col" style="align-items: right;justify-content:right;display: flex;">
+            <button type="button" class="btn btn-outline-primary" (click)="gotoPRegister()" style="width: 30%;">+ Add Patient</button>
+          </div>
+      </div>
+       <br>
+       <br>
+    <div class="row">
+      <div class="col">
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="searchStr" (ngModelChange)="searchPatient()" placeholder="Search..." aria-label="Recipient's username with two button addons">
+          <button class="btn btn-secondary" (click)="searchPatient()" type="button">Search</button>
+          <button class="btn btn-light" (click)="clear()" type="button">Clear</button>
+        </div>
+        <br>
+        <!-- <div class="mb-3">
+          <input type="text" [(ngModel)]="searchStr" (ngModelChange)="searchPatient()" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Search...">
+        </div> -->
+      </div>
+      <!-- <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+      </div> -->
+    </div>
+      <div class="row" style="max-height:500px;overflow-y:scroll;">
+        <div class="col" *ngIf="searchStr.length==0" >
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 5%; text-align: center">Sr No.</th>
+              <th scope="col" style="width: 20% ;text-align: center">Reference No.</th>
+              <th scope="col" style="width: 20% ;text-align: center">Name</th>
+              <th scope="col" style="width: 20%;text-align: center">Contact Number</th>
+              <th scope="col" style="width: 20%;text-align: center">Address</th>
+              <th scope="col" style="width: 5%;text-align: center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor = "let patient of patientList;index as i">
+              <th (click)="naviateToDetails(patient)" scope="row" style="width: 5%; text-align: center">{{i+1}}</th>
+              <td (click)="naviateToDetails(patient)" style="width: 20%; text-align: center">{{patient.ref_no}}</td>
+              <td (click)="naviateToDetails(patient)" style="width: 20%; text-align: center">{{patient.name}}</td>
+              <td (click)="naviateToDetails(patient)" style="width: 20%; text-align: center">{{patient.mobileno}}</td>
+              <td (click)="naviateToDetails(patient)" style="width: 20%; text-align: center">{{patient.address}}</td>
+              <td style="width: 5%; text-align: center">
+                <div class="row">
+                  <table>
+                    <tr>
+                      <td><a (click)="updatePatient(patient,i)"><img src="assets/images/edit.png" alt="" width="20" height="20" /></a></td>
+                      <td><a (click)="deletePatients(patient)"><img src="assets/images/trash.png" style="fill: red;" width="20" height="20" alt=""/></a></td>
+                    </tr>
+                  </table>
+                </div>
+                <!-- <div class="dropdown">
+                  <button class="dropbtn"><img src="assets/images/action.png" alt="" width="20" height="20" class="d-inline-block align-text-bottom rounded-circle" /></button>
+                  <div class="dropdown-content">
+                    <a href="#">Update</a>
+                    <a href="#">Delete</a>
+                  </div>
+                </div> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col" *ngIf="searchStr.length!=0">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 5%; text-align: center">Sr No.</th>
+              <th scope="col" style="width: 20% ;text-align: center">Reference No.</th>
+              <th scope="col" style="width: 20% ;text-align: center">Name</th>
+              <th scope="col" style="width: 20%;text-align: center">Contact Number</th>
+              <th scope="col" style="width: 20%;text-align: center">Address</th>
+              <th scope="col" style="width: 5%;text-align: center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let patient of searchList;index as i">
+              <th scope="row" style="width: 5%; text-align: center">{{i+1}}</th>
+              <td style="width: 20%; text-align: center">{{patient.ref_no}}</td>
+              <td style="width: 20%; text-align: center">{{patient.name}}</td>
+              <td style="width: 20%; text-align: center">{{patient.mobileno}}</td>
+              <td style="width: 20%; text-align: center">{{patient.address}}</td>
+              <td style="width: 5%; text-align: center">
+                  <div class="row">
+                    <table>
+                      <tr>
+                        <td><a (click)="updatePatient(patient,i)"><img src="assets/images/edit.png" alt="" width="20" height="20" /></a></td>
+                        <td><a (click)="updatePatient(patient,i)"><img src="assets/images/trash.png" style="fill: red;" width="20" height="20" alt=""/></a></td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!-- <div class="dropdown">
+                    <button class="dropbtn"><img src="assets/images/action.png" alt="" width="20" height="20" class="d-inline-block align-text-bottom rounded-circle" /></button>
+                    <div class="dropdown-content">
+                      <a href="#">Update</a>
+                      <a href="#">Delete</a>
+                    </div>
+                  </div> -->
+              </td>
+            </tr>
+            <tr *ngIf="searchList.length==0">
+              <td colspan="5" style="text-align:center;">No Results Found !!!!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+      <br>
+      <br>
+      <br>
+      <!-- <div class="row text-center">
+        <div class="col-md-4">
+          <span><hr class="rounded"></span>
+        </div>
+        <div class="col-md-4">
+            <span>Or Sign In With</span>
+        </div>
+        <div class="col-md-4">
+          <span><hr class="rounded"></span>
+        </div>
+      </div>
+      <br>
+      <div class="row" >
+        <div class="col">
+          <a href="#" class="btn btn-light" style="width: 100%;">Google</a>
+        </div>
+        <div class="col">
+          <a href="#" class="btn btn-light" style="width: 100%;">Facebook</a>
+        </div>
+      </div>
+      <br> -->
+    </div>
+
+  </div>
+
+</div>
+<br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- <footer class="bg-light text-center text-lg-start">
+
+          <div class="text-center p-3" style="background-color: tranparent;">
+            © 2020 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          </div>
+
+        </footer> -->
+
+</div>
+
+

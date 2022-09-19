@@ -1,0 +1,254 @@
+
+<div style="height: 1000px;">
+  <!-- <div style="width: 100%;align-items: center;justify-content:center;display: flex;">
+      <h3 class="display-1" style="width: 40%;text-align: center;">
+        <span style="color:lightgreen; ">HEAL </span>
+        <span style="color:black;">AND </span>
+        <span style="color: rgba(53, 0, 128, 0.536);"> HELP</span>
+      </h3>
+  </div> -->
+<nav class="navbar navbar-light" >
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="text-align:center;">
+      <img src="assets/images/logo4.webp" alt="" width="40" height="40" class="d-inline-block align-text-bottom rounded-circle" />
+      <span style="color:lightgreen;font-weight: bold;font-size: 35px;font-family: 'DynaPuff';font-weight: bold;"> HEAL </span>
+      <span style="color:black;font-weight: bold;font-size: 35px;font-family: 'DynaPuff';">& </span>
+      <span style="color: rgba(53, 0, 128, 0.536);font-weight: bold;font-size: 35px;font-family: 'DynaPuff';"> HELP</span>
+    </a>
+    <form class="d-flex">
+      <button class="btn btn-outline-success" (click)="gotodashboard()" type="submit">View Patients</button>
+      <button class="btn btn-outline-success" (click)="signOut()" type="submit" style="margin-left: 5px;">Sign Out</button>
+    </form>
+  </div>
+</nav>
+<div style="width: 100%;align-items: center;justify-content:center;display: flex;margin-top: 1%;">
+  <div class="card" style="width:95%;padding: 1.5em .5em .5em;border-radius: 10px;box-shadow: 0 5px 10px rgba(0,0,0,.2);align-items: left;justify-content:left;display: flex;">
+    <div class="card-body">
+      <div  class="text-end">
+        <a  class="btn btn-secondary" (click)="gotoAddPatient()" style="width: 5%;font-family: 'Open Sans';">Edit</a>
+    </div>
+    <br/>
+       <div class="row">
+        <div class="col-4" >
+          <div class="card" style="padding: 1.5em .5em .5em;border-radius: 10px;box-shadow: 0 5px 10px rgba(0,0,0,.2);align-items: left;justify-content:left;display: flex;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                   <h5  style="text-align: left;font-family: 'Open Sans';font-weight: bold;">{{firstName}}</h5>
+              </div>
+             </div>
+             <br>
+             <div class="row">
+                <div class="col">
+                  <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Gender</label>
+                </div>
+                <div class="col">
+                  <p class="text-end">{{gender}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Date of Birth</label>
+                </div>
+                <div class="col">
+                  <p class="text-end">{{date}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Height</label>
+                </div>
+                <div class="col">
+                  <p class="text-end">{{height}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Weight</label>
+                </div>
+                <div class="col">
+                  <p class="text-end">{{weight}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Maritial Status</label>
+                </div>
+                <div class="col">
+                  <p class="text-end">{{martialStatus}}</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <br />
+          <div class="card" style="padding: 1.5em .5em .5em;border-radius: 10px;box-shadow: 0 5px 10px rgba(0,0,0,.2);align-items: left;justify-content:left;display: flex;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5  style="text-align: left;font-family: 'Open Sans';">Alergies</h5>
+                  <br />
+              </div>
+             </div>
+             <div class="row">
+                <div class="col">
+                  <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Taking any medications, currently?</label>
+                </div>
+                <div class="col">
+                  <p class="text-end">{{anyAllergies}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Do you have any allergies?</label>
+                </div>
+                <div class="col">
+                  <p class="text-end">{{anyMedications}}</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="card" style="padding: 1.5em .5em .5em;border-radius: 10px;box-shadow: 0 5px 10px rgba(0,0,0,.2);align-items: left;justify-content:left;display: flex;">
+            <div class="card-body">
+
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" id="general" aria-current="page" (click)="changeTab('General')">General</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="family" (click)="changeTab('Family')" >Family</a>
+                </li>
+              </ul>
+              <br>
+
+            <div *ngIf="tabGeneral">
+                <div class="row">
+                  <div class="col col-lg-2">
+                    <div class="mb-3 text-start">
+                      <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">First Name</label>
+                      <p class="text-start">{{firstName}}</p>
+                    </div>
+                  </div>
+                  <div class="col col-lg-2">
+                    <div class="mb-3 text-start">
+                      <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Middle Name</label>
+                      <p class="text-start">{{middleName}}</p>
+                    </div>
+                  </div>
+                  <div class="col col-lg-2">
+                    <div class="mb-3 text-start">
+                      <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Last Name</label>
+                      <p class="text-start">{{lastName}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col col-lg-2">
+                    <div class="mb-3 text-start">
+                      <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Phone Number</label>
+                      <p class="text-start">{{contactNumber}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col col-lg-4">
+                    <div class="mb-3 text-start">
+                      <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Email</label>
+                      <p class="text-start">{{emailAddress}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="mb-3 text-start">
+                      <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Address</label>
+                      <p class="text-start">{{streetAddress}} - {{zipCode}}</p>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+            <div *ngIf="tabFamily">
+              <div class="row">
+                <div class="col col-lg-2">
+                  <div class="mb-3 text-start">
+                    <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">First Name</label>
+                    <p class="text-start">{{eFirstName}}</p>
+                  </div>
+                </div>
+                <div class="col col-lg-2">
+                  <div class="mb-3 text-start">
+                    <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Last Name</label>
+                    <p class="text-start">{{eLastName}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-lg-2">
+                  <div class="mb-3 text-start">
+                    <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Phone Number</label>
+                    <p class="text-start">{{eContactNumber}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-lg-2">
+                  <div class="mb-3 text-start">
+                    <label for="exampleFormControlInput1" class="form-label" style="font-family: 'Open Sans';color: rgba(128, 128, 128, 0.721);">Relationship</label>
+                    <p class="text-start">{{eRelationship}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <!-- <div class="row text-center">
+        <div class="col-md-4">
+          <span><hr class="rounded"></span>
+        </div>
+        <div class="col-md-4">
+            <span>Or Sign In With</span>
+        </div>
+        <div class="col-md-4">
+          <span><hr class="rounded"></span>
+        </div>
+      </div>
+      <br>
+      <div class="row" >
+        <div class="col">
+          <a href="#" class="btn btn-light" style="width: 100%;">Google</a>
+        </div>
+        <div class="col">
+          <a href="#" class="btn btn-light" style="width: 100%;">Facebook</a>
+        </div>
+      </div>
+      <br> -->
+    </div>
+
+  </div>
+
+</div>
+
+<br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- <footer class="bg-light text-center text-lg-start">
+
+          <div class="text-center p-3" style="background-color: tranparent;">
+            © 2020 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          </div>
+
+        </footer> -->
+</div>
+
